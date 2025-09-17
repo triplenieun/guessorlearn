@@ -1,0 +1,206 @@
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background-color: #eee;
+}
+
+#canvas {
+    margin: auto;
+    border: 1px solid black;
+    margin-top: 20px;
+}
+
+.site-title {
+    text-align: center;
+    padding-top: 15px;
+}
+
+h2 {
+    margin-top: 5px;
+}
+
+.btn-basic, #label-input {
+    font-size: 20px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 10px 15px;
+    transition: all 0.5s;
+}
+
+#label-input {
+    width: 400px;
+}
+
+.btn-basic:hover {
+    background-color: #cccccc;
+}
+
+.btn-basic:active {
+    background-color: #999999;
+}
+
+.label-btn {
+    display: inline;
+    width: 220px;
+}
+
+.label {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.invisible {
+    display: none;
+}
+
+.bottom {
+    margin-top: 20px;
+}
+
+.container {
+    margin-bottom: 30px;
+    width: 514px;
+    height: 300px;
+    /* background-color: white;
+    border: 1px solid black;
+    border-radius: 3px; */
+    text-align: center;
+}
+
+.highlight-effect {
+    font-weight: bold;
+    /* text-transform: capitalize; */
+    animation: breathe 6s linear infinite;
+    box-shadow: -1px 0px 10px #000;
+}
+@keyframes breathe{
+    0%{transform: scale(.9);}
+    25%{transform: scale(1);}
+    50%{transform: scale(.9);}
+    75%{transform: scale(1);}
+    100%{transform: scale(.9);}
+}
+
+#canvas-cover {
+    width: 514px;
+    height: 514px;
+    position : absolute;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index : 5;
+    margin-top: 20px;
+}
+
+.black-bg {
+    width : 100%;
+    height : 100%;
+    position : fixed;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index : 5;
+    padding: 30px;
+    transition: all 1s;
+}
+
+.show-modal {
+    visibility: visible;
+    opacity: 1;
+}
+
+.white-bg {
+    margin: auto;
+    margin-top: 40px;
+    width : 80%;
+    background: white;
+    border-radius: 5px;
+    padding: 30px;
+} 
+
+.btn-gauge-set {
+    margin-bottom: 10px;
+    padding-top: 10px;
+    vertical-align: middle;
+}
+
+.gauge {
+    display: inline-block;
+    width: 350px;
+    height: 20px;
+    appearance: none;
+}
+  
+.gauge::-webkit-progress-bar {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid black;
+    overflow: hidden;
+}
+
+.gauge::-webkit-progress-value {
+    background: gray;
+    border-radius: 0px;
+}
+
+.myfastyle {
+    color: #666666;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.myfastyle:hover {
+    color: #000;
+}
+
+.myfastyle:active {
+    color: #000;
+}
+
+.color-block {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    margin-left: 20px;
+    border-radius: 5px;
+}
+
+#red {
+    background-color: red;
+}
+#orange {
+    background-color: orange;
+}
+#yellow {
+    background-color: yellow;
+}
+#green {
+    background-color: green;
+}
+#blue {
+    background-color: blue;
+}
+#navy {
+    background-color: navy;
+}
+#purple {
+    background-color: purple;
+}
+#brown {
+    background-color: brown;
+}
+#gray {
+    background-color: gray;
+}
+#black {
+    background-color: black;
+}
+
+.notused {
+    display: none;
+}
+
+@media (max-width: 768px) { /* 모바일 화면 크기에 맞춤 */
+    
+}
+

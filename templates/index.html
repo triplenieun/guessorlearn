@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Guess or Learn!</title>
+    <link rel="stylesheet" href="static\css\main.css">
+    <script src="https://kit.fontawesome.com/cf9cb99a57.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="black-bg">
+        <div class="white-bg">
+            <h1>저희와 함께 AI를 성장시켜주세요!</h1>
+            <p style="font-size: 18px;">
+                그림판에 그림을 그릴 때마다 AI가 그림의 정답을 추측해요. 아래는 AI가 예측한 정답과 확률이에요! AI의 예측에 찬성하면 "엄지 척!" 버튼을 눌러주세요! 별로라고 생각하면 "엄지 축..." 버튼을 누르면 돼요! 그림과 정답은 자동으로 저장되고 추후 AI를 업데이트 할 때 사용될 거에요.
+            </p>
+            <h1>Please grow AI with us!</h1>
+            <p style="font-size: 18px;">
+                Whenever you draw a picture on the board, the AI guesses the correct answer. Below are the AI's predicted answers and probabilities! If you agree with AI's prediction, press the "thumbs up" button! If you think it's not good, press the "thumbs down" button! The picture and the correct answer will be saved automatically and used to update the AI later.
+            </p>
+            <p style="text-align: center; margin: 0; margin-top: 50px;">
+                press any place
+            </p>
+                
+        </div>
+    </div>
+
+    <div class="top">
+        <h1 class="site-title">Guess or Learn!</h1>
+        <div id="drawing-recommendation" style="font-size: 20px; text-align: center;">
+
+        </div>
+    </div>
+    <div style="display: flex;" class="middle">
+        <div class="" style="width: 200px; height: 514px; margin-top: 20px;"></div>
+        <canvas id="canvas" width="512" height="512"></canvas>
+        <div class="" style="width: 200px; height: 514px; margin-top: 20px;">
+        </div>
+    </div>
+    <div class="bottom">
+        <i id="agreeButton" class="fa-regular fa-thumbs-up fa-3x myfastyle"></i>
+        <i id="disagreeButton" class="fa-regular fa-thumbs-down fa-3x myfastyle"></i>
+        <i id="clearButton" class="fa-solid fa-rotate-right fa-3x myfastyle"></i>
+        <!-- Powered by Font Awesome -->
+    </div>
+    <div class="bottom container">
+        <div class="btn-gauge-set invisible">
+            <!-- <input type='button' id='label-btn0' class="btn-basic label-btn" value=''/> -->
+            <progress id="gauge0" class="gauge" min="0" max="100"></progress>
+            <p id='label0' class="label"></p>
+        </div>
+        <div class="btn-gauge-set invisible">
+            <progress id="gauge1" class="gauge" min="0" max="100"></progress>
+            <p id='label1' class="label"></p>
+        </div>
+        <div class="btn-gauge-set invisible">
+            <progress id="gauge2" class="gauge" min="0" max="100"></progress>
+            <p id='label2' class="label"></p>
+        </div>
+        <div class="btn-gauge-set invisible">
+            <progress id="gauge3" class="gauge" min="0" max="100"></progress>
+            <p id='label3' class="label"></p>
+        </div>
+        <div class="btn-gauge-set invisible">
+            <progress id="gauge4" class="gauge" min="0" max="100"></progress>
+            <p id='label4' class="label"></p>
+        </div>
+    </div>
+    <div>
+        <p>
+            Made by Three Students of Department of Software and Computer Engineering of Ajou University
+        </p>
+    </div>
+    
+    <script src="static\js\newstroke.js"></script>
+</body>
+</html>

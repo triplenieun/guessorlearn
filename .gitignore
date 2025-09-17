@@ -1,0 +1,9 @@
+node_module/
+
+__pycache__/
+
+project_env/
+
+.vscode/
+
+senet_final.pth
