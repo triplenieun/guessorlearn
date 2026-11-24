@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>전처리 성능 벤치마크 · Guess or Learn!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/benchmark.css') }}">
+    <script type="module" src="{{ url_for('static', filename='js/benchmark-report.js') }}"></script>
+</head>
+<body>
+    <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+    <header class="site-header">
+        <div class="page-width brand">Guess or Learn!</div>
+    </header>
+    <main id="main" class="page-width">
+        <header class="page-heading">
+            <div>
+                <h1>전처리 성능 벤치마크</h1>
+                <p>같은 Quick, Draw! 그림과 모델로 캔버스 PNG와 벡터 방식의 정확도와 응답 시간을 비교합니다.</p>
+            </div>
+            <div class="heading-actions">
+                <a id="download" class="button button-secondary" download hidden>결과 CSV</a>
+                <button id="run" class="button button-primary" type="button" disabled>벤치마크 실행</button>
+            </div>
+        </header>
+
+        <div class="run-status">
+            <p id="status" role="status">저장된 벤치마크 결과를 확인 중입니다.</p>
+            <progress id="progress" aria-label="벤치마크 진행률" hidden></progress>
+        </div>
+        <div id="run-error" class="message" role="alert" hidden></div>
+        <noscript><p class="message">브라우저에서 JavaScript를 켜면 벤치마크를 실행하고 결과를 볼 수 있습니다.</p></noscript>
+
+        <div id="report" hidden>
+            <section aria-labelledby="summary-title">
+                <div class="section-heading">
+                    <h2 id="summary-title">전체 결과</h2>
+                    <p id="coverage"></p>
+                </div>
+                <div class="metrics" id="metrics"></div>
+                <p id="unmapped-summary" class="interpretation" hidden></p>
+                <p class="interpretation">측정 차이에는 안티앨리어싱, 선 두께, 좌표 필터, 축소 방식이 함께 반영됩니다. 학습 그림과 평가 표본이 겹치는지는 확인되지 않았습니다.</p>
+                <div id="failures" class="message" hidden>
+                    <p id="failure-summary"></p>
+                    <details id="failure-details" hidden>
+                        <summary>실패 및 누락 상세</summary>
+                        <ul id="failure-list"></ul>
+                    </details>
+                </div>
+            </section>
+
+            <section class="panel" id="examples-section" aria-labelledby="examples-title">
+                <div class="section-heading">
+                    <div>
+                        <h2 id="examples-title">모델 입력 비교</h2>
+                        <p>완성 그림의 64×64 입력 픽셀과 상위 5개 예측입니다.</p>
+                    </div>
+                    <label class="control" id="example-control" hidden>표본
+                        <select id="example-choice"></select>
+                    </label>
+                </div>
+                <div id="examples"></div>
+            </section>
+
+            <section class="panel" aria-labelledby="class-title">
+                <div class="section-heading">
+                    <h2 id="class-title">클래스별 결과</h2>
+                    <label class="control">지표
+                        <select id="class-metric">
+                            <option value="top1">Top-1 정확도</option>
+                            <option value="top5">Top-5 정확도</option>
+                            <option value="latency">응답 시간</option>
+                            <option value="bytes">전송 바이트</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="table-scroll" tabindex="0" role="region" aria-label="클래스별 기록 표">
+                    <table id="class-table"></table>
+                </div>
+            </section>
+        </div>
+
+        <details class="panel methodology" open>
+            <summary>측정 방법</summary>
+            <dl>
+                <dt>평가 데이터</dt>
+                <dd>공개 Quick, Draw! 원본 데이터에서 32개 클래스, 클래스당 20장을 추출합니다. 정답은 참가자가 받은 제시 단어입니다. <a href="https://github.com/googlecreativelab/quickdraw-dataset#the-quick-draw-dataset">Quick, Draw! 데이터 문서</a></dd>
+                <dt>Canvas PNG</dt>
+                <dd>획 종료 시 512×512 캔버스를 PNG로 전송합니다. 서버에서 회색조로 변환하고 BOX 방식으로 64×64로 축소합니다. 흰색은 0, 검은색은 1이며 중간 회색을 유지합니다.</dd>
+                <dt>현재 벡터</dt>
+                <dd>같은 그림의 누적 좌표를 전송합니다. 기존 좌표 필터와 축소 규칙을 적용하고 Bresenham 방식으로 64×64 이진 입력을 만듭니다.</dd>
+                <dt>정확도</dt>
+                <dd>완성 그림에서 정답이 1위 또는 상위 5개에 포함된 비율입니다. 하나의 가중치로 345개 출력을 평가하며 이름표가 없는 17개는 인덱스로 표시합니다. 정확도 차이는 벡터에서 PNG를 뺀 값입니다.</dd>
+                <dt>속도와 전송량</dt>
+                <dd>워밍업 10쌍 이후 획마다 두 요청의 순서를 번갈아 바꿉니다. 응답 시간은 브라우저에서 요청 인코딩을 시작한 시점부터 응답을 읽기까지이며, 전송량은 요청 본문 크기입니다.</dd>
+            </dl>
+            <p id="metadata" hidden></p>
+        </details>
+    </main>
+</body>
+</html>
